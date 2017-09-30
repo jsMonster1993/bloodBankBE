@@ -16,8 +16,9 @@ router.post('/register', function(req, res, next) {
 
   sqlWrapper.executeQuery([query]).then((result)=>{
     console.log("res is ",result)
+      res.json({"status":true});
   });
-  res.json({"status":true});
+
 });
 
 module.exports = router;
