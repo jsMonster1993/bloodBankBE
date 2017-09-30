@@ -2,6 +2,11 @@ var express = require('express');
 var router = express.Router();
 var sqlWrapper = require('../database/sqlWrapper');
 
+
+
+
+
+
 /* GET home page. */
 router.post('/register', function(req, res, next) {
   console.log("inside register route",req.body);
@@ -24,5 +29,23 @@ router.post('/register', function(req, res, next) {
   });
 
 });
+
+
+router.post('/getAllUsers', function(req, res, next) {
+    console.log("inside getAllUsers route",req.body);
+
+    var query = "select * from records";
+    console.log(query);
+
+    sqlWrapper.executeQuery([query]).then((result)=>{
+        console.log("res is ",result);
+        res.json({"status":true, "result":result[0]});
+    }).catch((error)=>{
+        console.log(error);
+        res.json({"status":false,"error":error});
+    });
+
+});
+
 
 module.exports = router;
