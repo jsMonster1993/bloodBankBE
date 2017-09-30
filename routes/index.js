@@ -17,6 +17,9 @@ router.post('/register', function(req, res, next) {
   sqlWrapper.executeQuery([query]).then((result)=>{
     console.log("res is ",result)
       res.json({"status":true});
+  }).catch((error)=>{
+      console.log(error);
+      res.json({"status":false,"error":error});
   });
 
 });
